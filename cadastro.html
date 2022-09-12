@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalize sua compra</title>
+    <style>
+    div {
+     font-family: sans-serif;      
+     
+    }   
+    body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    padding-top: 70px;
+    overflow-x: hidden;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    }
+    ::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: #ffffff;
+     }
+    a {
+     color: white;
+     display: inline-block;            
+     width: 150px;
+     height: 40px;
+     margin: 10px;
+     background-size: 100% 100%;
+     background-repeat: no-repeat;
+     background-position: center;
+     }
+     h2{
+          text-align: center;
+     }
+     strong{
+          color: #000000;
+          text-align: center;
+     }
+     form{
+          display: block;
+          margin-top: 0em;
+
+     }
+     input{
+          margin-left: auto;
+     }
+     
+     .modal-dialog form {
+     padding: 20px;
+     }
+     
+    </style>
+    
+</head>
+<body>
+    <!-- Modal Cadastro/Compra -->
+    <div style="width:100%;" class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="width:90%;" class="modal-dialog">
+             <div style="border-style:outset; border-color: #ff0000; background-color:#b8b8b8;" class="modal-content modal-popup">
+                  <div class="modal-header">
+                       <h2 class="modal-title">Faça Sua Compra</h2>
+                       <strong>Para finalizar sua compra, basta preencher os dados abaixo e clicar no botão comprar e você será redirecionado para a pagina de pagamento.</strong>
+                  </div>
+   
+                       <form action="redireciona_mp.php" method="post">
+                            <!-- NOME/SOBRENOME -->
+                            <div class="form-row">
+                                 <div class="form-group col-md-4">
+                                      <label for="Nome" style="color:rgb(0, 0, 0);">Nome</label>
+                                      <!-- Nome-->
+                                      <input name="nome" type="text" class="form-control" id="name" placeholder="Nome" required="">
+                                 </div>
+                                 <div class="form-group col-md-8">
+                                      <label for="sobrenome" style="color:rgb(0, 0, 0);">Sobrenome</label>
+                                      <!-- Sobrenome-->
+                                      <input name="sobrenome" type="text" class="form-control" id="sobrenome" placeholder="Sobrenome" required="">
+                                 </div>
+                            </div>
+   
+                            <!-- CPF/EMAIL -->
+                            <div class="form-row">
+                                 <div class="form-group col-md-6">
+                                      <label for="cpf" style="color:rgb(0, 0, 0);">CPF</label>
+                                      <!-- CPF-->
+                                      <input name="cpf" type="text" class="form-control" id="cpf" placeholder="CPF" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" required="">
+                                 </div>  
+                                 <div class="form-group col-md-6">
+                                      <label for="cpf" style="color:rgb(0, 0, 0);">Email</label>
+                                      <!-- Email -->
+                                      <input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">
+                                 
+                                 </div>  
+                                  
+                            </div>
+   
+                            <!-- DDD/CELULAR -->
+                            <div class="form-row">
+                                 <div class="form-group col-md-2">
+                                      <label for="ddd" style="color:rgb(0, 0, 0);">DDD</label>
+                                      <!-- DDD-->
+                                      <input name="ddd" class="form-control " type="text" placeholder="DDD" id="ddd" value="" pattern="\d*" maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" required="">
+                                 </div>
+                                 <div class="form-group col-md-6">
+                                      <label for="celular" style="color:rgb(0, 0, 0);">Celular</label>
+                                      <!-- Celular-->
+                                      <input name="telefone" class="form-control " type="text" placeholder="Celular" id="celular" value="" pattern="\d*" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" required="">       
+                                 </div>
+                            </div>
+                            <form method="get" action=".">
+                            <!-- CEP -->
+                            <div class="form-row">
+                                 <div class="form-group col-md-6">
+                                      <label for="celular" style="color:rgb(0, 0, 0);">CEP</label>
+                                      <!-- CEP -->
+                                        <input name="cep" type="text" placeholder="CEP" id="cep" value="" size="10" maxlength="9"onblur="pesquisacep(this.value);" /></label><br />
+                                 </div>
+                            </div>
+                            
+                            <!-- RUA/NUMERO -->
+                            <div class="form-row">
+                                 <div class="form-group col-md-10">
+                                      <label for="rua" style="color:rgb(0, 0, 0);">Rua</label>
+                                      <!-- Rua -->
+                                      <input name="rua" type="text" placeholder="Rua" id="rua" size="60" /></label><br />
+                                   </div>
+                                 <div class="form-group col-md-2">
+                                      <label for="numero_residencia" style="color:rgb(0, 0, 0);">Número</label>
+                                      <!-- Numero Casa-->
+                                      <input name="numero_casa" class="form-control" type="text" id="numero" placeholder="Numero" value="" pattern="[0-9]+" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" required="">
+                                 </div>
+                            </div>
+   
+                            <!-- BAIRRO/CIDADE/ESTADO -->
+                            <div class="form-row">
+                                 <div class="form-group col-md-5">
+                                      <label for="bairro" style="color:rgb(0, 0, 0);">Bairro</label>
+                                      <!-- Bairro-->
+                                      <input name="bairro" type="text" placeholder="Bairro" id="bairro" size="40" /></label><br />
+                                   </div>
+                            
+                                 <div class="form-group col-md-5">
+                                      <label for="cidade" style="color:rgb(0, 0, 0);">Cidade</label>
+                                      <!-- Cidade-->
+                                      <input name="cidade" type="text" placeholder="Cidade" id="cidade" size="40" /></label><br />
+                                   </div>
+                            
+                                 <div class="form-group col-md-2">
+                                      <label for="uf" style="color:rgb(0, 0, 0);">Estado</label>
+                                      <!-- UF -->
+                                      <input name="uf" type="text" placeholder="Estado" id="uf" size="2" /></label><br />
+                                   </div>
+                            </div>
+                            </form> 
+                            <!-- Enviar-->
+                            <a href="https://api.whatsapp.com/send/?phone=5575997145781&text&app_absent=0" id="whatsapp-share-btt" rel="nofollow" target="_blank" data-toggle="modal" data-target="#modal1" ><button>COMPRAR</button></a>
+                            
+                       </form>
+                  </div>
+             </div>
+        </div>    
+        <script>
+    
+          function limpa_formulário_cep() {
+                  //Limpa valores do formulário de cep.
+                  document.getElementById('rua').value=("");
+                  document.getElementById('bairro').value=("");
+                  document.getElementById('cidade').value=("");
+                  document.getElementById('uf').value=("");
+          }
+      
+          function meu_callback(conteudo) {
+              if (!("erro" in conteudo)) {
+                  //Atualiza os campos com os valores.
+                  document.getElementById('rua').value=(conteudo.logradouro);
+                  document.getElementById('bairro').value=(conteudo.bairro);
+                  document.getElementById('cidade').value=(conteudo.localidade);
+                  document.getElementById('uf').value=(conteudo.uf);
+              } //end if.
+              else {
+                  //CEP não Encontrado.
+                  limpa_formulário_cep();
+                  alert("CEP não encontrado.");
+              }
+          }
+              
+          function pesquisacep(valor) {
+      
+              //Nova variável "cep" somente com dígitos.
+              var cep = valor.replace(/\D/g, '');
+      
+              //Verifica se campo cep possui valor informado.
+              if (cep != "") {
+      
+                  //Expressão regular para validar o CEP.
+                  var validacep = /^[0-9]{8}$/;
+      
+                  //Valida o formato do CEP.
+                  if(validacep.test(cep)) {
+      
+                      //Preenche os campos com "..." enquanto consulta webservice.
+                      document.getElementById('rua').value="...";
+                      document.getElementById('bairro').value="...";
+                      document.getElementById('cidade').value="...";
+                      document.getElementById('uf').value="...";
+     
+                      //Cria um elemento javascript.
+                      var script = document.createElement('script');
+      
+                      //Sincroniza com o callback.
+                      script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+      
+                      //Insere script no documento e carrega o conteúdo.
+                      document.body.appendChild(script);
+      
+                  } //end if.
+                  else {
+                      //cep é inválido.
+                      limpa_formulário_cep();
+                      alert("Formato de CEP inválido.");
+                  }
+              } //end if.
+              else {
+                  //cep sem valor, limpa formulário.
+                  limpa_formulário_cep();
+              }
+          };
+          //Constrói a URL depois que o DOM estiver pronto
+          document.addEventListener("DOMContentLoaded", function() {
+         //conteúdo que será compartilhado: Título da página + URL
+         var conteudo = encodeURIComponent(document.title + " " + window.location.href);
+         //altera a URL do botão
+         document.getElementById("whatsapp-share-btt").href = "https://api.whatsapp.com/send?text=" + conteudo;
+     }, false);
+</script>
+   
+</body>
+</html>
